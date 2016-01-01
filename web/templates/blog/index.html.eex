@@ -1,0 +1,9 @@
+<div class="container theme-showcase" role="main">
+  <div class="jumbotron">
+    <h2>Blog Posts</h2>
+    <p class="lead">Latest insights from research and developement at DrunkenElmo labs.</p>
+  </div>
+
+  <div class="row marketing" id="elm-app-goes-here"></div>
+  </div>
+</div>
