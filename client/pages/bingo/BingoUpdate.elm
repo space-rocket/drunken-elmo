@@ -20,31 +20,31 @@ update : Action -> Model -> Model
 update action model =
   case action of
     NoOp -> model
-    Sort -> { model | entries <- List.sortBy .points model.entries }
+    Sort -> { model | entries = List.sortBy .points model.entries }
     Delete id ->
       let
         remainingEntries =
           List.filter (\e -> e.id /= id) model.entries
         --_ = Debug.log "the remaining entries" remainingEntries
       in
-        { model | entries <- remainingEntries }
+        { model | entries = remainingEntries }
 
     Mark id ->
       let 
         updateEntry e =
           if e.id == id then {
-            e | wasSpoken <- (not e.wasSpoken)
+            e | wasSpoken = (not e.wasSpoken)
           } else e
       in { 
-          model | entries <- List.map updateEntry model.entries 
+          model | entries = List.map updateEntry model.entries 
         }
 
     UpdatePhraseInput contents -> {
-        model | phraseInput <- contents
+        model | phraseInput = contents
       }
 
     UpdatePointsInput contents -> {
-        model | pointsInput <- contents
+        model | pointsInput = contents
       }
 
     Add ->
@@ -59,8 +59,8 @@ update action model =
         if isInvalid model
           then model
           else {
-              model | phraseInput <- "",
-                      pointsInput <- "",
-                      entries <- entryToAdd :: model.entries,
-                      nextID <- model.nextID + 1
+              model | phraseInput = "",
+                      pointsInput = "",
+                      entries = entryToAdd :: model.entries,
+                      nextID = model.nextID + 1
             }
